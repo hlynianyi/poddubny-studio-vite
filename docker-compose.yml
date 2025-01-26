@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+  db:
+    image: postgres:15
+    container_name: postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: monorepo
+    ports:
+      - "5432:5432"
